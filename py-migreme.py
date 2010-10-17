@@ -5,16 +5,15 @@
 # Date: 2009-10-16
 #
 # Usage: python migreme.py <url>
-# Example: ./migreme.py http://twitter.com/luish_
+# Example: ./migreme.py http://twitter.com/lshenr
 #	
 
 from sys import argv
 import urllib
 import xml.dom.minidom
 
-api = 'http://migre.me/api.xml?url=%s'
-
 def migreme(url):
+	api = 'http://migre.me/api.xml?url=%s'
 	mm_url = api % url
 	dom = xml.dom.minidom.parse(urllib.urlopen(mm_url))
 
