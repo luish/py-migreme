@@ -24,7 +24,7 @@ def main(*args):
 			shortened = migreme(str(list[0]))
 			print 'Shortened URL:', shortened
 		except URLError, e:
-			print 'URLError: %s' % e
+			print 'URLError: %s' % e.reason
 		except:
 			print 'Something bad happened'
 	else:
