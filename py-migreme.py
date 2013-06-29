@@ -13,24 +13,20 @@ from xml.dom.minidom import parse
 
 def migreme(url):
 	mm_url = 'http://migre.me/api.xml?url=%s' % url
-
-	try:
-		dom = parse(urlopen(mm_url))
-		if dom:
-			return str(dom.getElementsByTagName('migre')[0].childNodes[0].data)
-
-	except URLError, e:
-		print 'Error: %s' % e.reason
-	
-	return None
+	dom = parse(urlopen(mm_url))
+	return str(dom.getElementsByTagName('migre')[0].childNodes[0].data)
 
 
 def main(*args):
 	list = args[0]
 	if len(list) == 1:
-		shortened = migreme(str(list[0]))
-		if shortened:
+		try:
+			shortened = migreme(str(list[0]))
 			print 'Shortened URL:', shortened
+		except URLError, e:
+			print 'URLError: %s' % e
+		except:
+			print 'Something bad happened'
 	else:
 		print "Usage: ./%s <url>" % argv[0]
 
